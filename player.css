@@ -527,7 +527,6 @@ section#player .container .controls .info {
     }
 
     section#player .container .player .art {
-        
         width: max(100px, 60vmin);
         height: max(100px, 60vmin);
     }
@@ -594,5 +593,12 @@ section#player .container .controls .info {
         /* number of lines to show */
         line-clamp: 1;
         -webkit-box-orient: vertical;
+    }
+}
+
+@media (max-width: 450px) {
+    section#player .container .player .art {
+        width: max(100px, (100vmin - (2 * min(calc(var(--default-padding) * 4), max(5vw, var(--default-padding))))));
+        height: max(100px, (100vmin - (2 * min(calc(var(--default-padding) * 4), max(5vw, var(--default-padding))))));
     }
 }
