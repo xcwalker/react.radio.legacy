@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "legacyreactradio",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

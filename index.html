@@ -7,13 +7,13 @@
     <meta property="og:locale" content="en_GB" />
     <meta property="og:site_name" content="ReactRadio" />
 
-    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png?v=2">
-    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png?v=2">
-    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png?v=2">
-    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest?v=2">
-    <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg?v=2" color="#db2763">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico?v=2">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+    <link rel="manifest" href="/site.webmanifest?v=2">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#db2763">
+    <link rel="shortcut icon" href="/favicon.ico?v=2">
     <meta name="msapplication-TileColor" content="#db2763">
     <meta name="theme-color" content="#ffffff">
 
@@ -26,10 +26,10 @@
     <meta property="og:types" content="music.radio_station" />
     <meta name="twitter:image" content="https://reactradio.xcwalker.dev/banner-large.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:image" content="%PUBLIC_URL%/banner-large.png" />
+    <meta property="og:image" content="/banner-large.png" />
     <meta property="og:image:alt" content="The banner image for ReactRadio" />
 
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -39,42 +39,65 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <script src="./main.js"></script>
+    <link rel="stylesheet" href="./page-setup.css">
+    <link rel="stylesheet" href="./variables.css">
+    <link rel="stylesheet" href="./transitions.css">
+    <link rel="stylesheet" href="./player.css">
 </head>
 
-<body class="state.paused">
+<body class="state-paused">
     <main>
-        <section id="player" onload="func_load()">
-            <div class="container">
-                <div class="art">
-                    <img src="" alt="Artwork" id="player-art">
-                    <svg viewBox="0 0 135.47 135.47" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#fff">
-                            <path
-                                d="M34.901 29.575V46.58h63.82c4.505 0 7.848.98 10.029 2.942 2.252 1.963 3.379 4.725 3.379 8.286 0 3.488-1.127 6.213-3.38 8.175-2.18 1.962-5.523 2.944-10.029 2.944H34.901v16.679h63.61l13.835 20.276h23.11l-16.468-23.997c4.617-2.221 8.217-5.268 10.8-9.142 2.761-4.216 4.142-9.194 4.142-14.935 0-5.814-1.38-10.83-4.142-15.045-2.762-4.287-6.686-7.558-11.774-9.81-5.014-2.253-11.01-3.38-17.987-3.38z" />
-                            <path
-                                d="M0 29.575v17.007h33.575c4.506 0 7.85.98 10.03 2.942 2.252 1.963 3.379 4.725 3.379 8.286 0 3.488-1.127 6.214-3.38 8.176-2.18 1.962-5.523 2.943-10.029 2.943H0v16.68h33.368l13.835 20.276h23.11L53.846 81.888c4.617-2.221 8.217-5.268 10.8-9.142 2.761-4.216 4.142-9.194 4.142-14.935 0-5.814-1.38-10.83-4.142-15.044-2.762-4.288-6.687-7.558-11.774-9.811-5.015-2.253-11.01-3.38-17.987-3.38z" />
-                        </g>
-                    </svg>
-                    <button class="material-symbols-outlined large" onclick="func_pause()" title="Pause">pause</button>
-                    <button class="material-symbols-outlined large" onclick="play()" title="Pause">play_arrow</button>
+        <section id="player">
+            <div class="dj">
+                <img src="" alt="Current Dj's Avatar" id="dj-avatar" class="profilePicture" />
+                <div class="about">
+                    <span class="title" id="dj-name"></span>
+                    <ReactMarkdown class="subTitle" id="dj-details"></ReactMarkdown>
                 </div>
-                <div class="info">
-                    <span class="title" id="player-title"></span>
-                    <span class="subTitle" id="player-artists"></span>
+            </div>
+            <div class="container">
+                <div class="player">
+                    <div class="art">
+                        <img src="" alt="Artwork" id="player-art">
+                        <svg viewBox="0 0 135.47 135.47" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="#fff">
+                                <path
+                                    d="M34.901 29.575V46.58h63.82c4.505 0 7.848.98 10.029 2.942 2.252 1.963 3.379 4.725 3.379 8.286 0 3.488-1.127 6.213-3.38 8.175-2.18 1.962-5.523 2.944-10.029 2.944H34.901v16.679h63.61l13.835 20.276h23.11l-16.468-23.997c4.617-2.221 8.217-5.268 10.8-9.142 2.761-4.216 4.142-9.194 4.142-14.935 0-5.814-1.38-10.83-4.142-15.045-2.762-4.287-6.686-7.558-11.774-9.81-5.014-2.253-11.01-3.38-17.987-3.38z" />
+                                <path
+                                    d="M0 29.575v17.007h33.575c4.506 0 7.85.98 10.03 2.942 2.252 1.963 3.379 4.725 3.379 8.286 0 3.488-1.127 6.214-3.38 8.176-2.18 1.962-5.523 2.943-10.029 2.943H0v16.68h33.368l13.835 20.276h23.11L53.846 81.888c4.617-2.221 8.217-5.268 10.8-9.142 2.761-4.216 4.142-9.194 4.142-14.935 0-5.814-1.38-10.83-4.142-15.044-2.762-4.288-6.687-7.558-11.774-9.811-5.015-2.253-11.01-3.38-17.987-3.38z" />
+                            </g>
+                        </svg>
+                        <button class="material-symbols-outlined large pause" onclick="func_pause()"
+                            title="Pause">pause</button>
+                        <button class="material-symbols-outlined large play" onclick="func_play()"
+                            title="Pause">play_arrow</button>
+                    </div>
+                    <div class="info">
+                        <span class="title" id="player-title"></span>
+                        <span class="subTitle" id="player-artists"></span>
+                    </div>
                 </div>
                 <div class="controls">
                     <div class="left"></div>
+                    <div class="info">
+                        <span class="title"></span>
+                        <span class="subTitle"></span>
+                    </div>
                     <div class="center">
                         <button class="material-symbols-outlined" onclick="func_live()" title="Live">stream</button>
-                        <button class="material-symbols-outlined large" onclick="func_playPause()" title="Play">play_circle</button>
-                        <button class="material-symbols-outlined large" onclick="func_playPause()" title="Pause">pause_circle</button>
-                        <button class="material-symbols-outlined" onclick="func_stop()" title="Live">stop_circle</button>
+                        <button class="material-symbols-outlined large play" onclick="func_playPause()"
+                            title="Play">play_circle</button>
+                        <button class="material-symbols-outlined large pause" onclick="func_playPause()"
+                            title="Pause">pause_circle</button>
+                        <button class="material-symbols-outlined" onclick="func_stop()"
+                            title="Live">stop_circle</button>
                     </div>
                     <div class="right">
-                        <input type="range" min="0" max="100" class="slider" id="volume" onchange="func_volume(e)" />
+                        <input type="range" min="0" max="100" value="100" class="slider" id="player-volume" onchange="func_volume(Event)" />
                     </div>
                 </div>
             </div>
+            <img src="" alt="Background" class="background" id="player-background">
             <audio src="" id="player" autoplay="autoplay" crossorigin="anonymous"></audio>
         </section>
     </main>
