@@ -15,6 +15,7 @@ function update(apiURL, station, state) {
             data.json().then(res => {
                 let title = "";
                 let artists = "";
+                let artwork = "";
 
                 if (res?.now_playing?.title) {
                     document.querySelector("#player-title").textContent = res?.now_playing?.title;
@@ -45,9 +46,11 @@ function update(apiURL, station, state) {
                 if (res?.now_playing?.art) {
                     document.querySelector("img#player-art").src = res?.now_playing?.art
                     document.querySelector("img#player-background").src = res?.now_playing?.art
+                    artwork = res?.now_playing?.art;
                 } else if (res.art.large) {
                     document.querySelector("img#player-art").src = res?.art.large
                     document.querySelector("img#player-background").src = res?.art.large
+                    artwork = res?.art.large;
                 } else {
                     document.querySelector("img#player-art").src = ""
                 }
@@ -68,6 +71,19 @@ function update(apiURL, station, state) {
                     document.querySelector("#dj-details").textContent = res.djs.now.details
                 } else {
                     document.querySelector("#dj-details").textContent = ""
+                }
+
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: title,
+                        artist: artists,
+                        album: "ReactRadio [LEGACY]",
+                        artwork: [{ src: artwork }],
+                    });
+        
+                    navigator.mediaSession.setActionHandler('play', func_play);        
+                    navigator.mediaSession.setActionHandler('pause', func_pause);  
+                    navigator.mediaSession.setActionHandler('stop', func_stop);
                 }
             })
         })
