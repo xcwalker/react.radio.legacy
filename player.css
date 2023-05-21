@@ -407,6 +407,10 @@ section#player span.live {
     user-select: none;
 }
 
+body.state-paused section#player span.live {
+    display: none;
+}
+
 @media (max-width: 700px) {
     section#player .container .controls {
         flex-direction: column;
@@ -493,8 +497,8 @@ section#player .container .controls .info {
 @media (max-height: 525px) and (max-width: 450px) {
     section#player .container {
         /* grid */
-        display: grid;
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
     }
 
     section#player .container .player {

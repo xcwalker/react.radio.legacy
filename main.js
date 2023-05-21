@@ -94,19 +94,9 @@ function update(apiURL, station, state) {
 
 async function func_playPause() {
     if (document.body.classList.contains("state-paused")) {
-        document.body.classList.remove("state-paused")
-        document.body.classList.add("state-playing")
-
-        update(api, "Simulator Radio");
-        document.querySelector("audio#player").src = stream;
-        document.querySelector("audio#player").play();
+        func_play();
     } else if (document.body.classList.contains("state-playing")) {
-        document.body.classList.remove("state-playing")
-        document.body.classList.add("state-paused")
-
-        update(api, "Simulator Radio");
-        document.querySelector("audio#player").src = stream;
-        document.querySelector("audio#player").pause();
+        func_pause();
     }
 }
 
@@ -117,6 +107,7 @@ async function func_play() {
     document.body.classList.add("state-playing")
 
     update(api, "Simulator Radio");
+    document.querySelector("audio#player").volume = document.querySelector("#player-volume").value / 100;
     document.querySelector("audio#player").src = stream;
     document.querySelector("audio#player").play();
 }
